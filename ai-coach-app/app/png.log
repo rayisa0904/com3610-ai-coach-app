@@ -1,0 +1,39 @@
+2025-04-21 19:01:12,025 [INFO] - PID=74571 Starting the app with the following options:
+2025-04-21 19:01:12,025 [INFO] - telemetry_port: 20777
+server_port: 5000
+udp_custom_action_code: None
+udp_tyre_delta_action_code: None
+post_race_data_autosave: True
+refresh_interval: 200
+disable_browser_autoload: False
+log_file: png.log
+log_file_size: 1000000
+process_car_setup: True
+forwarding_targets: []
+stream_overlay_start_sample_data: False
+2025-04-21 19:01:12,026 [INFO] - Directory 'data/2025_04_21/race-info/' created.
+2025-04-21 19:01:12,031 [INFO] - Starting F1 telemetry server. Open one of the below addresses in your browser
+    http://172.20.10.2:5000
+    http://127.0.0.1:5000
+    http://localhost:5000
+NOTE: The tables will be empty until the red lights appear on the screen before the race start
+That is when the game starts sending telemetry data
+2025-04-21 19:01:22,187 [INFO] - PID=74744 Starting the app with the following options:
+2025-04-21 19:01:22,187 [INFO] - telemetry_port: 20777
+server_port: 5000
+udp_custom_action_code: None
+udp_tyre_delta_action_code: None
+post_race_data_autosave: True
+refresh_interval: 200
+disable_browser_autoload: False
+log_file: png.log
+log_file_size: 1000000
+process_car_setup: True
+forwarding_targets: []
+stream_overlay_start_sample_data: False
+2025-04-21 19:01:22,192 [INFO] - Starting F1 telemetry server. Open one of the below addresses in your browser
+    http://localhost:5000
+    http://172.20.10.2:5000
+    http://127.0.0.1:5000
+NOTE: The tables will be empty until the red lights appear on the screen before the race start
+That is when the game starts sending telemetry data

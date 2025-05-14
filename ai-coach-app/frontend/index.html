@@ -1,0 +1,151 @@
+<!-- 
+COM3610 Dissertation Project
+AI Driving Coach on Edge
+Authors: Weixiang Han (Ray)
+Date: 2025-05-14 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏎️ F1 24 - AI Coach Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav nav-tabs px-3 pt-3">
+    <a class="nav-link active" href="#" onclick="showTab('main')">🏁 Main Page</a>
+    <a class="nav-link" href="#" onclick="showTab('data')">📄 Lap Data</a>
+    <a class="nav-link" href="#" onclick="showTab('analysis')">📊 Race Analysis</a>
+  </nav>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="text-center my-5">
+    <h1>🔄 Listening for UDP Telemetry Packets...</h1>
+    <p>Please start driving in F1 24 Time Trial mode!</p>
+    <button class="btn btn-secondary mt-3" onclick="forceReveal()">Force Show Dashboard</button>
+  </div>
+
+  <!-- Helper: Force Reveal for Debugging -->
+  <script>
+    function forceReveal() {
+      document.getElementById("loading-screen").style.display = "none";
+      showTab("main");
+    }
+  </script>
+
+  <!-- Main Dashboard -->
+  <div id="main" style="display: none; padding: 20px;">
+    <header class="mb-4">
+      <h1 class="text-center fw-bold">🏁 F1 24 - AI Telemetry Coach</h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <!-- ⏱️ Lap History -->
+        <div class="col-md-6">
+          <h2 class="fw-bold">Lap History</h2>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-striped table-bordered text-center" id="lap-times">
+              <thead class="table-dark">
+                <tr><th>Lap</th><th>S1</th><th>S2</th><th>S3</th><th>Total</th><th>Top Speed</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary w-100 mt-2" onclick="exportData()">💾 Export Lap Data</button>
+          <button class="btn btn-success mb-3" onclick="exportAll()">📦 Export All Data</button>
+        </div>
+
+        <!-- 📊 Live Car Data -->
+        <div class="col-md-6">
+          <h2 class="fw-bold">Live Car Data</h2>
+          <ul class="list-group mb-4">
+            <li class="list-group-item">Speed: <span id="speed">0</span> km/h</li>
+            <li class="list-group-item">Throttle: <span id="throttle">0</span>%</li>
+            <li class="list-group-item">Brake: <span id="brake">0</span>%</li>
+          </ul>
+
+          <h3 class="fw-bold">Personal Bests</h3>
+          <ul class="list-group mb-4">
+            <li class="list-group-item">Best Lap: <span id="best-lap">-</span></li>
+            <li class="list-group-item">Best S1: <span id="best-s1">-</span></li>
+            <li class="list-group-item">Best S2: <span id="best-s2">-</span></li>
+            <li class="list-group-item">Best S3: <span id="best-s3">-</span></li>
+          </ul>
+
+          <h3 class="fw-bold">Coaching Tip</h3>
+          <p id="coaching-tip">Stay smooth and consistent! 🏎️</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📄 Lap Data Tab -->
+  <div id="data" class="tab-content" style="display: none; padding: 20px;">
+    <h1 class="text-center fw-bold text-danger">📄 Exported Lap Data</h1>
+    <div id="lap-data-table-container">
+      <p>Lap data will appear here after export.</p>
+    </div>
+  </div>
+
+  <!-- 📊 Race Analysis Tab -->
+  <div id="analysis" class="tab-content" style="display: none; padding: 20px;">
+    <header class="mb-4">
+      <h1 class="text-center fw-bold text-info">📊 Race Analysis</h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <!-- 🖼️ Analysis Image -->
+        <div class="col-md-7">
+          <h2 class="fw-bold text-danger">Race Analysis Graph</h2>
+          <div class="border rounded bg-dark p-3" style="min-height: 400px; max-height: 600px; overflow-y: auto;">
+            <div id="analysis-image-wrapper" class="text-light text-center">
+              <p>Graph will appear here after generation.</p>
+            </div>
+          </div>
+          <button class="btn btn-info w-100 mt-3" onclick="loadRaceAnalysis()">🔍 Generate Analysis</button>
+        </div>
+
+        <!-- 🤖 AI Insights -->
+        <div class="col-md-4">
+          <h2 class="fw-bold text-danger">AI Insights</h2>
+          <div class="border rounded bg-dark p-3 text-light" style="min-height: 400px; max-height: 600px; overflow-y: auto;">
+            <p id="analysis-chatbot">AI insights will appear here after analysis is generated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 Tab Switching Logic -->
+  <script>
+    function showTab(tabId) {
+      const tabs = ['main', 'data', 'analysis'];
+      tabs.forEach(id => {
+        document.getElementById(id).style.display = (id === tabId) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const text = link.innerText;
+        link.classList.toggle('active',
+          (tabId === 'main' && text.includes("Main")) ||
+          (tabId === 'data' && text.includes("Lap Data")) ||
+          (tabId === 'analysis' && text.includes("Analysis")));
+      });
+    }
+  </script>
+
+  <!-- 🧠 Core Logic Script -->
+  <script src="/static/app.js?v=1.0.1"></script>
+
+</body>
+</html>

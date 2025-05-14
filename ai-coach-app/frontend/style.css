@@ -1,0 +1,165 @@
+/* 
+COM3610 Dissertation Project
+AI Driving Coach on Edge
+Authors: Weixiang Han (Ray)
+Date: 2025-05-14  
+*/
+
+:root {
+  --f1-red: #e10600;
+  --f1-dark: #15151e;
+  --f1-darker: #0c0c12;
+  --f1-gray: #1f1f2b;
+  --f1-light-gray: #2d2d3d;
+  --f1-text: #ffffff;
+  --f1-text-secondary: #9090a0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Titillium Web', 'Exo 2', sans-serif;
+  background-color: var(--f1-darker);
+  color: var(--f1-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1, h2, h3 {
+  color: var(--f1-red);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.col-md-6 {
+  flex: 0 0 48%;
+}
+
+.left-panel, .right-panel {
+  background-color: var(--f1-dark);
+  border: 1px solid var(--f1-light-gray);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  border: 1px solid var(--f1-light-gray);
+  padding: 10px;
+  text-align: center;
+}
+
+table thead {
+  background-color: var(--f1-gray);
+}
+
+/* Valid lap styling (normal rows) */
+.valid-lap {
+  background-color: inherit;
+  color: inherit;
+  font-weight: normal;
+}
+
+/* Invalid lap styling */
+tr.invalid-lap td {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: var(--f1-red);
+  font-weight: bold;
+}
+
+/* Best lap styling */
+.best-lap {
+  font-weight: bold;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  background-color: var(--f1-red);
+  color: var(--f1-text);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #c30500;
+}
+
+/* Loading Screen */
+#loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  font-family: 'Titillium Web', sans-serif;
+  text-align: center;
+}
+
+#loading-screen h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Spinner for Loading */
+.spinner {
+  margin-top: 20px;
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--f1-light-gray);
+  border-top: 5px solid var(--f1-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* List Groups (live data) */
+.list-group-item {
+  background-color: var(--f1-gray);
+  border: 1px solid var(--f1-light-gray);
+  color: var(--f1-text);
+  font-size: 1rem;
+}
+
+/* Coaching Tip Style */
+#coaching-tip {
+  background-color: var(--f1-light-gray);
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+td {
+  white-space: nowrap;
+}

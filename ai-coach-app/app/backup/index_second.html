@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏎️ F1 24 - AI Coach Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- External Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- 🔄 Loading Screen -->
+  <div id="loading-screen" class="text-center my-5">
+    <h1>🔄 Listening for UDP Telemetry Packets...</h1>
+    <p>Please start driving in F1 24 Time Trial mode!</p>
+    <button class="btn btn-secondary mt-3" onclick="showDashboard()">Force Show Dashboard</button>
+  </div>
+
+  <!-- 🧠 Helper: Force Reveal for Debugging -->
+  <script>
+    function showDashboard() {
+      document.getElementById("loading-screen").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    }
+  </script>
+
+  <!-- 🧾 Main Dashboard (hidden initially) -->
+  <div id="dashboard" style="display: none; padding: 20px;">
+    <header class="mb-4">
+      <h1 class="text-center fw-bold">🏁 F1 24 - AI Telemetry Coach</h1>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        
+        <!-- ⏱️ Left Panel: Lap History -->
+        <div class="col-md-6">
+          <h2 class="fw-bold">Lap History</h2>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-striped table-bordered text-center" id="lap-times">
+              <thead class="table-dark">
+                <tr>
+                  <th>Lap</th>
+                  <th>S1</th>
+                  <th>S2</th>
+                  <th>S3</th>
+                  <th>Total</th>
+                  <th>Top Speed</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary w-100 mt-2" onclick="exportData()">💾 Export Lap Data</button>
+        </div>
+
+        <!-- 📊 Right Panel: Live Data -->
+        <div class="col-md-6">
+          <h2 class="fw-bold">Live Car Data</h2>
+          <ul class="list-group mb-4">
+            <li class="list-group-item">Speed: <span id="speed">0</span> km/h</li>
+            <li class="list-group-item">Throttle: <span id="throttle">0</span>%</li>
+            <li class="list-group-item">Brake: <span id="brake">0</span>%</li>
+          </ul>
+
+          <h3 class="fw-bold">Personal Bests</h3>
+          <ul class="list-group mb-4">
+            <li class="list-group-item">Best Lap: <span id="best-lap">-</span></li>
+            <li class="list-group-item">Best S1: <span id="best-s1">-</span></li>
+            <li class="list-group-item">Best S2: <span id="best-s2">-</span></li>
+            <li class="list-group-item">Best S3: <span id="best-s3">-</span></li>
+          </ul>
+
+          <h3 class="fw-bold">Coaching Tip</h3>
+          <p id="coaching-tip">Stay smooth and consistent! 🏎️</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 Logic Script -->
+  <script src="/static/app.js?v=1.0.1"></script>
+
+</body>
+</html>

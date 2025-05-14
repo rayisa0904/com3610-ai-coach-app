@@ -1,0 +1,22 @@
+[2025-05-06 08:46:21] Okay, here's an analysis of the telemetry data with concise, driver-focused tips:
+
+**Speed Comparison:** "Focus on maintaining higher minimum speed through sector 2; it looks like you’re losing some momentum."
+
+**Throttle Comparison:** "Try to be more consistent with throttle application mid-corner – smoother inputs will improve traction and reduce lap time."
+
+**Brake Comparison:** "You're braking slightly later, but your initial brake pressure is lower than Russell's - experiment with a firmer first press for better deceleration."
+
+**Delta Time (Lap 21 vs. Lap 22):** "The delta shows a small improvement on the second lap – keep focusing on those minor gains to build consistency."
+
+**Speed Comparison vs. Russell:** "You’re losing speed in sector 3, review your line and braking point there for potential improvements."
+
+**Throttle Comparison vs. Russell:** "Russell is holding throttle earlier on exit - try mirroring that to maximize acceleration out of the corner."
+
+**Brake Comparison vs. Russell:** "Your brake release is a little early – aim to hold it slightly longer to carry more speed into the next corner."
+
+**Delta Time (You vs. Russell):** "The gap is closing, but you're still losing time overall; focus on implementing these adjustments consistently for larger gains."
+
+
+
+Let me know if you want me to analyze any other telemetry data!
+
